@@ -1,23 +1,31 @@
 import React from "react";
 
 const Login = () => {
+  const handleForm = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
   return (
     <div>
-      <form className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Please Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
+            <form onSubmit={handleForm} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="email"
                   className="input input-bordered"
+                  name="email"
                   required
                 />
               </div>
@@ -29,6 +37,7 @@ const Login = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
+                  name="password"
                   required
                 />
                 <label className="label">
@@ -40,10 +49,10 @@ const Login = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
