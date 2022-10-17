@@ -1,6 +1,10 @@
 import React, { createContext, useState } from "react";
 import app from "../firebase/firebase.config";
-import { getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 // creating context
 export const AuthContext = createContext();
 // get auth
@@ -9,9 +13,14 @@ const auth = getAuth(app);
 const UserContexts = ({ children }) => {
   const [user, setUser] = useState({ displayName: "Forid" });
   const uservalue = { displayName: "Batash" };
-  const authInfo = { user: uservalue };
-  //! see  documentation
-  // here children is coming  from  index.js
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const authInfo = { user, createUser ,signIn };
+
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
