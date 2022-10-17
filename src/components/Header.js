@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <div>
       <div className="navbar bg-primary text-primary-content">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          Awesome Auth
+        </Link>
         <Link className="btn btn-ghost normal-case text-xl" to="/">
           Home
         </Link>
