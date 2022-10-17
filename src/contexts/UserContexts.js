@@ -1,15 +1,15 @@
-import React, { Children, createContext } from "react";
+import React, { createContext } from "react";
 
 // creating context
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-const UserContexts = ({ Children }) => {
-  const user = { displayName: "Batash" };
-  const authInfo = { user : user};
+const UserContexts = ({ children }) => {
+  const uservalue = { displayName: "Batash" };
+  const authInfo = { user: uservalue };
   //! see  documentation
-  // here Children is coming  from  index.js
+  // here children is coming  from  index.js
   return (
-    <AuthContext.Provider value={authInfo}>{Children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 
