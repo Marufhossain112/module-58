@@ -1,25 +1,16 @@
-import React, {
-  useContext
-} from "react";
-import {
-  Link
-} from "react-router-dom";
-import {
-  AuthContext
-} from "../contexts/UserContexts";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/UserContexts";
 
 const Header = () => {
-  const {
-    user,
-    logOut
-  } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   // console.log(user);
   const handleSignOut = () => {
     logOut()
-    .then(() => {})
-    .catch((error) => {
-      console.log(error);
-    });
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -31,6 +22,9 @@ const Header = () => {
         <Link className="btn btn-ghost normal-case text-xl" to="/">
           Home
         </Link>
+        <Link className="btn btn-ghost normal-case text-xl" to="/orders">
+          Orders
+        </Link>
         <Link className="btn btn-ghost normal-case text-xl" to="login">
           Login
         </Link>
@@ -39,9 +33,9 @@ const Header = () => {
         </Link>
         {user?.email && <span>Welcome {user.email}</span>}
         <button onClick={handleSignOut} className="btn btn-sm ml-4">
-        {user?.email ? 'Sign out' : <Link to = '/login'>Sign in</Link>}
+          {user?.email ? "Sign out" : <Link to="/login">Sign in</Link>}
         </button>
-    </nav>
+      </nav>
     </div>
   );
 };
