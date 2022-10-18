@@ -27,7 +27,7 @@ const UserContexts = ({ children }) => {
     return signOut(auth);
   };
   const signInWithGoogle = () => {
-    signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider);
   };
 
   //Why are we doing this ???
