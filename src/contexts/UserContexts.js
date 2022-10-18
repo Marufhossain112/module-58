@@ -5,6 +5,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 // creating context
 export const AuthContext = createContext();
@@ -20,6 +21,9 @@ const UserContexts = ({ children }) => {
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const logOut = ()=>{
+    return signOut(auth)
+  }
 
   //Why are we doing this ???
   useEffect(() => {
@@ -32,7 +36,7 @@ const UserContexts = ({ children }) => {
     };
   }, []);
 
-  const authInfo = { user, createUser, signIn };
+  const authInfo = { user, createUser, signIn, logOut };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
