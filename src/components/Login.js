@@ -13,11 +13,13 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        form.reset();
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error, email);
       });
   };
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">

@@ -1,8 +1,9 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 // creating context
@@ -19,7 +20,19 @@ const UserContexts = ({ children }) => {
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const authInfo = { user, createUser ,signIn };
+
+  //Why are we doing this ???
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log("Stage is changle", currentUser);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const authInfo = { user, createUser, signIn };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
