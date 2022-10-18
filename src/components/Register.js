@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/UserContexts";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, signInWithGoogle } = useContext(AuthContext);
   // console.log(createUser);
   const handleForm = (e) => {
     e.preventDefault();
@@ -16,6 +16,16 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log("registered user", user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
       })
       .catch((error) => {
         console.log(error);
@@ -75,6 +85,12 @@ const Register = () => {
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-outline btn-success"
+            >
+              Google
+            </button>
           </div>
         </div>
       </div>
